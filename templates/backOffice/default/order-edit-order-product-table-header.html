@@ -1,0 +1,10 @@
+{if $order_id}
+{loop type="module-config" name="affiche_img" module="OrderChange" variable="module-orderchange-affiche_img"}{if $VALUE}<th class="product-thumbnail"></th>{/if}{/loop}
+{$edit=0}
+{loop type="module-config" name="edit_prix" module="OrderChange" variable="module-orderchange-edit_prix"}{if $VALUE}{$edit=1}{/if}{/loop}
+{loop type="module-config" name="edit_quantity" module="OrderChange" variable="module-orderchange-edit_quantity"}{if $VALUE}{$edit=1}{/if}{/loop}
+{loop type="module-config" name="edit_status" module="OrderChange" variable="module-orderchange-edit_status"}{if $VALUE}{$edit=1}{/if}{/loop}
+{if $edit}
+<th class="product-thumbnail">Edit</th>
+{/if}
+{/if}

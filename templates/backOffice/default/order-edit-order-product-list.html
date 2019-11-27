@@ -1,0 +1,13 @@
+{*
+{if $order_id}
+{loop type="order_product" name="infoOrderProduct" id=$order_product_id order=$order_id}
+{loop type="product" name="infoProduct" ref=$REF}
+	<a href="{$URL nofilter}" title="{$CHAPO}" class="float-left pull-left">
+		{loop type="image" name="product-image" product=$ID limit="1" width="140" height="93" force_return="true"}
+			<img src="{$IMAGE_URL nofilter}" alt="Product #{$cart_count}">
+		{/loop}
+	</a>
+{/loop}
+{/loop}
+{/if}
+*}

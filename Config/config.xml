@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<config xmlns="http://thelia.net/schema/dic/config"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://thelia.net/schema/dic/config http://thelia.net/schema/dic/config/thelia-1.0.xsd">
+
+    <loops>
+        <loop name="order-product-status" class="OrderChange\Loop\OrderProductStatusLoop" />
+    </loops>
+
+    <forms>
+        <!--
+        <form name="MyFormName" class="OrderChange\Form\MySuperForm" />
+        -->
+    </forms>
+
+    <commands>
+        <!--
+        <command class="OrderChange\Command\MySuperCommand" />
+        -->
+    </commands>
+
+    <!--
+    <services>
+
+    </services>
+    -->
+
+
+    <hooks>
+        <hook id="orderchange.hook" class="OrderChange\Hook\Admin\OrderChangeHook">
+            <tag name="hook.event_listener" event="module.configuration" type="back" templates="render:module_configuration.html" />
+            <tag name="hook.event_listener" event="order-edit.order-product-table-header" type="back" method="onOrderEditOrderProductTableHeader" />
+            <tag name="hook.event_listener" event="order-edit.product-list" type="back" method="onOrderEditOrderProductList" />
+            <tag name="hook.event_listener" event="order-edit.order-product-table-row" type="back" method="onOrderEditOrderProductTableRow" />
+            <tag name="hook.event_listener" event="order-edit.after-order-product-list" type="back" method="onOrderEditAfterOrderProductList" />
+            <tag name="hook.event_listener" event="order-edit.bottom" type="back" method="onOrderEditBottom" />
+            <tag name="hook.event_listener" event="order.edit-js" type="back" method="onOrderEditJs" />
+        </hook>
+    </hooks>
+
+
+    <!--
+    <exports>
+
+    </exports>
+    -->
+
+    <!--
+    <imports>
+
+    </imports>
+    -->
+</config>

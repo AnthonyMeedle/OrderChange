@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<database defaultIdMethod="native" name="thelia"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:noNamespaceSchemaLocation="../../../core/vendor/propel/propel/resources/xsd/database.xsd" >
+       <table name="order_product_status" namespace="OrderChange\Model">
+        <column autoIncrement="true" name="id" primaryKey="true" required="true" type="INTEGER" />
+        <column defaultValue="NULL" name="status_id" type="INTEGER" />
+        <column defaultValue="NULL" name="order_product_id" type="INTEGER" />
+        <foreign-key foreignTable="order_status" name="fk_order_product_status_status_id" onDelete="RESTRICT" onUpdate="RESTRICT">
+            <reference foreign="id" local="status_id" />
+        </foreign-key>
+        <foreign-key foreignTable="order_product" name="fk_order_product_status_order_product_id" onDelete="RESTRICT" onUpdate="RESTRICT">
+            <reference foreign="id" local="order_product_id" />
+        </foreign-key>
+        <behavior name="timestampable" />
+	    </table>
+    <external-schema filename="local/config/schema.xml" referenceOnly="true" />
+</database>

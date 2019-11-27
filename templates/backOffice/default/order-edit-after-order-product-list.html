@@ -1,0 +1,8 @@
+{$edit=0}
+{loop type="module-config" name="edit_remise" module="OrderChange" variable="module-orderchange-edit_remise"}{if $VALUE}{$edit=1}{/if}{/loop}
+{loop type="module-config" name="edit_fdp" module="OrderChange" variable="module-orderchange-edit_fdp"}{if $VALUE}{$edit=1}{/if}{/loop}
+{if $edit}
+	<a class="btn btn-primary action-btn modalChangeOrderGeneral pull-right float-right" title="Modifier une commande" href="#order_change_general_dialog" data-toggle="modal" data-orderid="{$order_id}">
+		<span class="glyphicon glyphicon-edit"></span>
+	</a>
+{/if}

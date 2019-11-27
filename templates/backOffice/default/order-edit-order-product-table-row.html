@@ -1,0 +1,37 @@
+{if $order_id}
+	{loop type="order_product" name="infoOrderProduct" id=$order_product_id order=$order_id}
+		{loop type="module-config" name="affiche_img" module="OrderChange" variable="module-orderchange-affiche_img"}
+			{if $VALUE}
+				{loop type="product" name="infoProduct" ref=$REF}
+					<td class="product-thumbnail">
+						<a href="{$URL nofilter}" title="{$CHAPO}">
+							{loop type="image" name="product-image" product=$ID limit="1" width="140" height="93" force_return="true"}
+								<img src="{$IMAGE_URL nofilter}" alt="Product #{$cart_count}">
+							{/loop}
+						</a>
+					</td>
+				{/loop}
+			{/if}
+		{/loop}
+		{$edit=0}
+		{assign "orderProductStatusId" $order_status_id}
+		{loop type="module-config" name="edit_prix" module="OrderChange" variable="module-orderchange-edit_prix"}{if $VALUE}{$edit=1}{/if}{/loop}
+		{loop type="module-config" name="edit_quantity" module="OrderChange" variable="module-orderchange-edit_quantity"}{if $VALUE}{$edit=1}{/if}{/loop}
+		{loop type="module-config" name="edit_status" module="OrderChange" variable="module-orderchange-edit_status"}{if $VALUE}{$edit=1}
+			{loop type="order-product-status" name="productStatus" order_product_id=$order_product_id}
+				{assign "orderProductStatusId" $STATUS_ID}
+			{/loop}
+		{/if}{/loop}
+		{if $edit}
+			<td>
+				<a class="btn btn-primary action-btn modalChangeOrder" title="Modifier une commande" href="#order_change_dialog" data-toggle="modal" data-orderid="{$order_id}" data-orderproductstatusid="{$orderProductStatusId}" data-orderproductid="{$order_product_id}" data-prix="{if $WAS_IN_PROMO}{$PROMO_PRICE}{else}{$PRICE}{/if}" data-quantity="{$QUANTITY}">
+					<span class="glyphicon glyphicon-edit"></span>
+				</a>{loop type="module-config" name="edit_status" module="OrderChange" variable="module-orderchange-edit_status"}{if $VALUE}
+				{loop name="order-status-list" type="order-status" limit="1" id="{$orderProductStatusId}"}
+					<span style="background-color: {$COLOR};" class="label">{$TITLE}</span>
+	            {/loop}
+				{/if}{/loop}
+			</td>
+		{/if}
+	{/loop}
+{/if}

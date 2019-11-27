@@ -1,0 +1,61 @@
+
+
+        <div class="general-block-decorator">
+            <div class="title title-without-tabs">
+                {intl l="Configure Order Change" d="orderchange.bo.default"}
+            </div>
+
+            <div class="row">
+                <div class="col-md-12">
+                    {if $success}
+                        <div class="alert alert-success">
+                            {intl l="Configuration correctly saved" d="orderchange.bo.default"}
+                        </div>
+                    {/if}
+
+                        <form action="/admin/module/order-change/config" method="post">
+                            
+                            <input type="hidden" name="success_url" value="{url path='/admin/module/OrderChange'}" />
+                            
+                            <div class="form-group">
+                                <label class="control-label" for="affiche_img">
+									{intl l="Affiche image produit" d="orderchange.bo.default"}
+                                    <input type="checkbox" name="affiche_img" id="affiche_img" {loop type="module-config" name="affiche_img" module="OrderChange" variable="module-orderchange-affiche_img"}{if $VALUE}checked{/if}{/loop} value="1">
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" for="edit_prix">
+									{intl l="Modifier prix" d="orderchange.bo.default"}
+                                    <input type="checkbox" name="edit_prix" id="edit_prix" {loop type="module-config" name="edit_prix" module="OrderChange" variable="module-orderchange-edit_prix"}{if $VALUE}checked{/if}{/loop} value="1">
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" for="edit_quantity">
+									{intl l="Modifier quantité" d="orderchange.bo.default"}
+                                    <input type="checkbox" name="edit_quantity" id="edit_quantity" {loop type="module-config" name="edit_quantity" module="Orderchange" variable="module-orderchange-edit_quantity"}{if $VALUE}checked{/if}{/loop} value="1">
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" for="edit_status">
+									{intl l="Modifier status" d="orderchange.bo.default"}
+                                    <input type="checkbox" name="edit_status" id="edit_status" {loop type="module-config" name="edit_status" module="orderchange" variable="module-orderchange-edit_status"}{if $VALUE}checked{/if}{/loop} value="1">
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" for="edit_remise">
+									{intl l="Modifier la remise" d="orderchange.bo.default"}
+                                    <input type="checkbox" name="edit_remise" id="edit_remise" {loop type="module-config" name="edit_remise" module="orderchange" variable="module-orderchange-edit_remise"}{if $VALUE}checked{/if}{/loop} value="1">
+                                </label>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label" for="edit_fdp">
+									{intl l="Modifier les frais de port" d="orderchange.bo.default"}
+                                    <input type="checkbox" name="edit_fdp" id="edit_fdp" {loop type="module-config" name="edit_fdp" module="orderchange" variable="module-orderchange-edit_fdp"}{if $VALUE}checked{/if}{/loop} value="1">
+                                </label>
+                            </div>
+                          	<button class="btn btn-primary">Save</button>
+                        </form>
+                
+                </div>
+            </div>
+        </div>

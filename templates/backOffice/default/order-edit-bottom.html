@@ -1,0 +1,78 @@
+<div class="modal fade " id="order_change_dialog" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h3>Éditer la commande</h3>
+            </div>
+            <form method="POST" action="{url path="/admin/module/order-change/update-product"}" id="formOrderChange">
+                <div class="modal-body">
+					<input type="hidden" id="change_order_id" name="change_order_id" value="{$order_id}">
+					<input type="hidden" id="change_order_product_id" name="change_order_product_id" value="">
+					<input type="hidden" name="success_url" value="{url path="/admin/order/update/{$order_id}"}">
+					{loop type="module-config" name="edit_prix" module="OrderChange" variable="module-orderchange-edit_prix"}{if $VALUE}
+					<div class="form-group ">
+						<label for="order_change_price" class="control-label">{intl l="Price H.T."} : </label>
+						<input type="text" id="order_change_price" name="order_change_price" class="form-control " value="" title="{intl l="Price"}" placeholder="{intl l="Price"}">
+					</div>
+					{/if}{/loop}
+					{loop type="module-config" name="edit_quantity" module="OrderChange" variable="module-orderchange-edit_quantity"}{if $VALUE}
+					<div class="form-group ">
+						<label for="order_change_quantity" class="control-label">{intl l="Quantity"} : </label>
+						<input type="text" id="order_change_quantity" name="order_change_quantity" class="form-control " value="" title="{intl l="Quantity"}" placeholder="{intl l="Quantity"}">
+					</div>
+					{/if}{/loop}
+					{loop type="module-config" name="edit_status" module="OrderChange" variable="module-orderchange-edit_status"}{if $VALUE}
+					<div class="form-group ">
+						<label for="order_change_status" class="control-label">{intl l="Modifier l'état du produit'"} : </label>
+						<select type="text" id="order_change_status" name="order_change_status" class="form-control ">
+							{loop type="order-status" name="all-status"}
+								<option value="{$ID}" data-content="<span class='label' style='background-color: {$COLOR};'>{$TITLE}</span>">{$TITLE}</option>
+							{/loop}
+						</select>
+					</div>
+					{/if}{/loop}
+                </div>
+	            <div class="modal-footer">
+					{loop type="module-config" name="edit_quantity2" module="OrderChange" variable="module-orderchange-edit_quantity"}{if $VALUE}
+	                <button type="button" class="btn btn-danger" onclick="if(confirm('Êtes-vous sur de vouloir supprimer ce produit de cette commande ?')){ $('#formOrderChange').attr('action', '{url path="/admin/module/order-change/deleteproduct"}').submit(); }else{ return false;}"><span class="glyphicon glyphicon-trash"></span> Supprimer ce produit</button>
+					{/if}{/loop}
+	                <button type="button" class="btn btn-default" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove"></span> Annuler</button>
+                    <button  type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-check"></span> Valider les modifications</button>
+	            </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="modal fade " id="order_change_general_dialog" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h3>Éditer la commande</h3>
+            </div>
+            <form method="POST" action="{url path="/admin/module/order-change/update-general"}" >
+                <div class="modal-body">
+					<input type="hidden" id="change_order_id" name="change_order_id" value="{$order_id}">
+					<input type="hidden" name="success_url" value="{url path="/admin/order/update/{$order_id}"}">
+					{loop type="module-config" name="edit_remise" module="OrderChange" variable="module-orderchange-edit_remise"}{if $VALUE}
+					<div class="form-group ">
+						<label for="order_change_discount" class="control-label">{intl l="Discount"} : </label>
+						<input type="text" id="order_change_discount" name="order_change_discount" class="form-control " value="{$order_discount}" title="{intl l="Discount"}" placeholder="{intl l="Discount"}">
+					</div>
+					{/if}{/loop}
+					{loop type="module-config" name="edit_fdp" module="OrderChange" variable="module-orderchange-edit_fdp"}{if $VALUE}
+					<div class="form-group ">
+						<label for="order_change_postage" class="control-label">{intl l="Postage"} : </label>
+						<input type="text" id="order_change_postage" name="order_change_postage" class="form-control " value="{$order_postage}" title="{intl l="Postage"}" placeholder="{intl l="Postage"}">
+					</div>
+					{/if}{/loop}
+                </div>
+	            <div class="modal-footer">
+	                <button type="button" class="btn btn-default" data-dismiss="modal" aria-hidden="true"><span class="glyphicon glyphicon-remove"></span> Annuler</button>
+                    <button  type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-check"></span> Valider les modifications</button>
+	            </div>
+            </form>
+        </div>
+    </div>
+</div>
